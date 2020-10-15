@@ -1,3 +1,6 @@
 node_modules
 
 ormconfig.json
+
+uploads/*
+!uploads/.gitkeep
