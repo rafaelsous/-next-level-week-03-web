@@ -1,4 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+
+import Image from "./Image";
 
 @Entity('orphanages')
 export default class Orphanage {
@@ -8,11 +10,11 @@ export default class Orphanage {
   @Column()
   name: string;
 
-  @Column({ type: 'point' })
-  latitude: number;
+  @Column()
+  latitude: string;
 
-  @Column({ type: 'point' })
-  longitude: number;
+  @Column()
+  longitude: string;
 
   @Column()
   about: string;
@@ -25,6 +27,12 @@ export default class Orphanage {
 
   @Column()
   open_on_weekends: boolean;
+
+  @OneToMany(() => Image, image => image.orphanage, {
+    cascade: ['insert', 'update']
+  })
+  @JoinColumn({ name: 'orphanage_id' })
+  images: Image[];
 
   @CreateDateColumn()
   created_at: Date;

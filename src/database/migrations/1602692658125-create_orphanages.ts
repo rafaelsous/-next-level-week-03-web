@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export default class createOrphanages1602692658125
+export class createOrphanages1602692658125
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(new Table({
@@ -17,11 +17,7 @@ export default class createOrphanages1602692658125
           type: 'varchar',
         },
         {
-          name: 'latitude',
-          type: 'point',
-        },
-        {
-          name: 'longitude',
+          name: 'location',
           type: 'point',
         },
         {

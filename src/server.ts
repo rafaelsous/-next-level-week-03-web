@@ -1,43 +1,20 @@
 import 'reflect-metadata';
 import express from 'express';
-import { getRepository } from 'typeorm';
+import 'express-async-errors';
+import path from 'path';
+import cors from 'cors';
 
 import './database/connection';
-
-import Orphanage from './models/Orphanage';
+import routes from './routes';
+import errorHandler from './errors/handler';
 
 const app = express();
+
+app.use(cors());
 app.use(express.json());
-
-app.post('/orphanages', async (request, response) => {
-  console.log(request.body);
-
-  const { 
-    name,
-    latitude,
-    longitude,
-    about,
-    instructions,
-    opening_hours,
-    open_on_weekends,
-  } = request.body;
-
-  const orphanagesRepository = getRepository(Orphanage);
-
-  const orphanage = orphanagesRepository.create({
-    name,
-    latitude,
-    longitude,
-    about,
-    instructions,
-    opening_hours,
-    open_on_weekends,
-  });
-
-  await orphanagesRepository.save(orphanage);
-
-  return response.status(201).json(orphanage);
-});
+app.use(routes);
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
+app.use(errorHandler);
 
 app.listen(3333, () => {
   // eslint-disable-next-line no-console
