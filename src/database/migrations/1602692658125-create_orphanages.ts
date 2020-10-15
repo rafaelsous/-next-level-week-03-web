@@ -8,10 +8,9 @@ export default class createOrphanages1602692658125
       columns: [
         {
           name: 'id',
-          type: 'uuid',
+          type: 'varchar',
           isPrimary: true,
           generationStrategy: 'uuid',
-          default: 'uuid_generate_v4()',
         },
         {
           name: 'name',
@@ -19,15 +18,11 @@ export default class createOrphanages1602692658125
         },
         {
           name: 'latitude',
-          type: 'decimal',
-          scale: 2,
-          precision: 10,
+          type: 'point',
         },
         {
           name: 'longitude',
-          type: 'decimal',
-          scale: 2,
-          precision: 10,
+          type: 'point',
         },
         {
           name: 'about',
@@ -36,6 +31,10 @@ export default class createOrphanages1602692658125
         {
           name: 'instructions',
           type: 'text',
+        },
+        {
+          name: 'opening_hours',
+          type: 'varchar',
         },
         {
           name: 'open_on_weekends',
