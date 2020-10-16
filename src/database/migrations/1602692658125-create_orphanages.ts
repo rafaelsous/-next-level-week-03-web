@@ -17,8 +17,12 @@ export class createOrphanages1602692658125
           type: 'varchar',
         },
         {
-          name: 'location',
-          type: 'point',
+          name: 'latitude',
+          type: 'varchar',
+        },
+        {
+          name: 'longitude',
+          type: 'varchar',
         },
         {
           name: 'about',
